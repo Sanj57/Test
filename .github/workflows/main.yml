@@ -1,0 +1,15 @@
+name: "Test Pull Request"
+
+on: push
+
+jobs:
+  build:
+   runs-on: ubuntu-latest
+   steps:
+   
+   - uses: Sanj57/Auto-Merge@main
+     with:
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      number: 1
+      method: merge
+ 
