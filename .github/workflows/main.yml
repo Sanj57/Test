@@ -7,10 +7,10 @@ jobs:
    runs-on: ubuntu-latest
    steps:
    - uses: actions/checkout@v3
-   - uses: Sanj57/Auto-Merge@main
+   - uses: juliangruber/merge-pull-request-action@v1
      with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
       number: 1
       method: merge
-      repo: Sanj57/octokit-action
+
  
