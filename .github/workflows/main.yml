@@ -1,8 +1,7 @@
 name: "Test Pull Request"
 
 on:  push
-env:
-  PR_NUMBER: ${{ github.event.number }}
+
 jobs:
   merge-pull-request:
    runs-on: ubuntu-latest
@@ -17,13 +16,13 @@ jobs:
      uses: juliangruber/approve-pull-request-action@v1.1.1
      with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      number: PR_Number
+      number: 1
    
    - name: Merge Pull Request
      uses: juliangruber/merge-pull-request-action@v1
      with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      number: PR_Number
+      number: 1
       method: merge
 
 
