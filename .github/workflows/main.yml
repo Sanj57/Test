@@ -3,7 +3,7 @@ name: "Test Pull Request"
 on:  push
 
 jobs:
-  build:
+  merge-pull-request:
    runs-on: ubuntu-latest
    steps:
    - name: Checkout repository
