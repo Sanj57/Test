@@ -12,17 +12,37 @@ jobs:
     
    - name: Checkout repository
      uses: actions/checkout@v3
+   - name: Expose git commit data  
+     uses: rlespinasse/git-commit-data-action@v1
+   - name: Update author infor
+     run: echo " - ${{ env.GIT_COMMIT_AUTHOR_NAME }}" > Author
+     
+   - name: Raise PR
+     id: demo-1
+     uses: peter-evans/create-pull-request@v3
+     with: 
+      branch: "auto-pr-branch"
+      base: main
+      title: demo for auto pr
+      committer: ${{ env.GIT_COMMIT_COMMITTER_NAME }}"<${{ env.GIT_COMMIT_COMMITTER_NAME }}">
+      author: ${{ env.GIT_COMMIT_AUTHOR_NAME }}"<${{ env.GIT_COMMIT_AUTHOR_NAME }}">
+      body: this is show automatic PR creation
+      github-token: ${{ secrets.GITHUB_TOKEN }}
+      delete-branch: true
+      
    - name: approve pull request
      uses: juliangruber/approve-pull-request-action@v1.1.1
      with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      number: 1
+      number: ${{steps.demo-1.output.pull-request-number}}
+
+ 
    
    - name: Merge Pull Request
      uses: juliangruber/merge-pull-request-action@v1
      with:
       github-token: ${{ secrets.GITHUB_TOKEN }}
-      number: 1
+      number: ${{steps.demo-1.output.pull-request-number}}
       method: merge
 
 
