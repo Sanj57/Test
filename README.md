@@ -1,5 +1,1 @@
-# Test
-one
-two
-three
-four
+Only auto merge sg=hould work
