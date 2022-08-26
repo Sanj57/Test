@@ -1,5 +1,1 @@
-# Test
-one
-two
-three
-four
+Merge labels
